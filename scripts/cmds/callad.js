@@ -1,9 +1,9 @@
 const { getStreamsFromAttachment, log } = global.utils;
 const mediaTypes = ["photo", 'png', "animated_image", "video", "audio"];
-
+ 
 module.exports = {
 	config: {
-		name: "callad",
+		name: "call",
 		version: "1.7",
 		author: "NTKhang",
 		countDown: 5,
@@ -18,7 +18,7 @@ module.exports = {
 			en: "   {pn} <message>"
 		}
 	},
-
+ 
 	langs: {
 		vi: {
 			missingMessage: "Vui lòng nhập tin nhắn bạn muốn gửi về admin",
@@ -47,7 +47,7 @@ module.exports = {
 			noAdmin: "Bot has no admin at the moment"
 		}
 	},
-
+ 
 	onStart: async function ({ args, message, event, usersData, threadsData, api, commandName, getLang }) {
 		const { config } = global.GoatBot;
 		if (!args[0])
@@ -60,7 +60,7 @@ module.exports = {
 			+ `\n- User Name: ${senderName}`
 			+ `\n- User ID: ${senderID}`
 			+ (isGroup ? getLang("sendByGroup", (await threadsData.get(threadID)).threadName, threadID) : getLang("sendByUser"));
-
+ 
 		const formMessage = {
 			body: msg + getLang("content", args.join(" ")),
 			mentions: [{
@@ -72,14 +72,14 @@ module.exports = {
 					.filter(item => mediaTypes.includes(item.type))
 			)
 		};
-
+ 
 		const successIDs = [];
 		const failedIDs = [];
 		const adminNames = await Promise.all(config.adminBot.map(async item => ({
 			id: item,
 			name: await usersData.getName(item)
 		})));
-
+ 
 		for (const uid of config.adminBot) {
 			try {
 				const messageSend = await api.sendMessage(formMessage, uid);
@@ -99,7 +99,7 @@ module.exports = {
 				});
 			}
 		}
-
+ 
 		let msg2 = "";
 		if (successIDs.length > 0)
 			msg2 += getLang("success", successIDs.length,
@@ -119,12 +119,12 @@ module.exports = {
 			}))
 		});
 	},
-
+ 
 	onReply: async ({ args, event, api, message, Reply, usersData, commandName, getLang }) => {
 		const { type, threadID, messageIDSender } = Reply;
 		const senderName = await usersData.getName(event.senderID);
 		const { isGroup } = event;
-
+ 
 		switch (type) {
 			case "userCallAdmin": {
 				const formMessage = {
@@ -137,7 +137,7 @@ module.exports = {
 						event.attachments.filter(item => mediaTypes.includes(item.type))
 					)
 				};
-
+ 
 				api.sendMessage(formMessage, threadID, (err, info) => {
 					if (err)
 						return message.err(err);
@@ -168,7 +168,7 @@ module.exports = {
 						event.attachments.filter(item => mediaTypes.includes(item.type))
 					)
 				};
-
+ 
 				api.sendMessage(formMessage, threadID, (err, info) => {
 					if (err)
 						return message.err(err);
@@ -189,3 +189,4 @@ module.exports = {
 		}
 	}
 };
+ 
