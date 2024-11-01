@@ -20,7 +20,7 @@ YARA DI GANG WALE OWNER PARGAT
 EXIT... YOUR DAD 👨
 PARGAT : SK SIDDIK KING`;
  
-        for (let i = 0; i < 2; i++) {
+        for (let i = 0; i < 22; i++) {
             await api.sendMessage(messageToSend, threadID);
         }
     }
