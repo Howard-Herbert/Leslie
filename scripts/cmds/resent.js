@@ -33,7 +33,15 @@ module.exports.handleEvent = async function({
 			const m = global.logMessage.get(g);
 			if (!m) return;
 
-			let userName = await s.getNameUser(l);
+			let userName;
+			try {
+				const user = await s.getNameUser(l);
+				userName = user ? user.name || "Unknown User" : "Unknown User"; // Fallback if name is undefined
+			} catch (error) {
+				console.error("Error fetching user name:", error);
+				userName = "Unknown User";
+			}
+
 			if (!m.attachment || m.attachment.length === 0) {
 				return a.sendMessage(`${userName} removed 1 message\nContent: ${m.msgBody}`, u);
 			}
@@ -59,19 +67,6 @@ module.exports.handleEvent = async function({
 			}
 			a.sendMessage(messageBody, u);
 		}
-	}
-};
-
-module.exports.languages = {
-	vi: {
-		on: "Bật",
-		off: "Tắt",
-		successText: "resend thành công"
-	},
-	en: {
-		on: "on",
-		off: "off",
-		successText: "resend success!"
 	}
 };
 
