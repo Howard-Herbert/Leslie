@@ -36,7 +36,7 @@ module.exports.handleEvent = async function({
 			let userName;
 			try {
 				const user = await s.getNameUser(l);
-				userName = user ? user.name || "Unknown User" : "Unknown User"; // Fallback if name is undefined
+				userName = user?.name || "Unknown User"; // Optional chaining to prevent errors
 			} catch (error) {
 				console.error("Error fetching user name:", error);
 				userName = "Unknown User";
