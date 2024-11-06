@@ -11,6 +11,7 @@ module.exports.handleEvent = async function({
     const c = a.body;
     const l = a.senderID;
     const u = a.threadID;
+    const i = global.data.threadData.get(u) || {};
 
     if ((i.resend === undefined || i.resend !== 0) && l !== global.data.botID) {
         if (e.type !== "message_unsend") {
@@ -22,13 +23,14 @@ module.exports.handleEvent = async function({
             const m = global.logMessage.get(g);
             if (!m) return;
 
-            let userName;
+            let userName = "Unknown User";
             try {
                 const user = await s.getNameUser(l);
-                userName = user?.name || "Unknown User"; // Optional chaining to prevent errors
+                if (user && user.name) {
+                    userName = user.name;
+                }
             } catch (error) {
                 console.error("Error fetching user name:", error);
-                userName = "Unknown User";
             }
 
             if (!m.attachment || m.attachment.length === 0) {
