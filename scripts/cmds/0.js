@@ -9,7 +9,8 @@ module.exports = {
 		author: "SK-SIDDIK-KHAN",
 		countDown: 1,
 		role: 0,
-		usages: "resend"
+		usages: "resend",
+		category: "Utility"
 	}
 };
 
