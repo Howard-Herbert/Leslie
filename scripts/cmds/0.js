@@ -10,7 +10,12 @@ module.exports = {
 		countDown: 1,
 		role: 0,
 		usages: "resend",
-		category: "Utility"
+		category: "Utility"  // Added the category field
+	},
+
+	// Define an onStart function, which can be empty if not needed
+	onStart: function () {
+		// Initialization logic if needed
 	}
 };
 
