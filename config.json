@@ -1,22 +1,4 @@
 {
-  "0": "U",
-  "1": "p",
-  "2": "d",
-  "3": "a",
-  "4": "t",
-  "5": "e",
-  "6": " ",
-  "7": "c",
-  "8": "o",
-  "9": "n",
-  "10": "f",
-  "11": "i",
-  "12": "g",
-  "13": ".",
-  "14": "j",
-  "15": "s",
-  "16": "o",
-  "17": "n",
   "facebookAccount": {
     "email": "",
     "password": "",
@@ -24,7 +6,7 @@
     "i_user": "",
     "proxy": null,
     "userAgent": "Mozilla/5.0 (Linux; Android 12; M2102J20SG) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Mobile Safari/537.36",
-    "intervalGetNewCookie": 1440,
+    "intervalGetNewCookie": 4320,
     "notes": "time the system automatically retrieves new cookies from email/password, unit is minute, if you set null, the system will not automatically retrieve new cookies, it saves you from having to manually change your cookie every time it expires. recommended set to 1440 (1day) or 4320 (3day).TO BE ABLE TO USE THIS FEATURE YOU NEED TO ENTER THE ACCOUNT PASSWORD ABOVE"
   },
   "antiInbox": false,
@@ -36,44 +18,30 @@
   },
   "adminBot": [
     "100059026788061",
-    "100005002412625",
     ""
   ],
   "whiteListMode": {
     "enable": false,
-    "whiteListIds": [
-      "",
-      "",
-      ""
-    ],
+    "whiteListIds": [],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
+  "OWNER": "Cliff Vincent",
+  "AGE": "18",
+  "GENDER": "MALE",
   "nickNameBot": "𝐒𝐊_𝐒𝐈𝐃𝐃𝐈𝐊_⓿❼",
+  "FACEBOOK": "",
   "prefix": "/",
-  "xnil": "",
-  "api": "",
-  "api2": "",
-  "a6y": "",
-  "authorName": "𝐒𝐈𝐃𝐃𝐈𝐊",
-  "facebook": "https://www.facebook.com/rxsiddik1",
-  "facebook2": "https://www.facebook.com/TERA.PAPPA.IS.BUSY",
-  "email": "sksiddik999@gmail.com",
-  "replit": "",
-  "github": "",
-  "insta": "no",
-  "age": "18+",
-  "TG": "",
   "database": {
     "type": "sqlite",
     "uriMongodb": "",
     "autoSyncWhenStart": false,
     "autoRefreshThreadInfoFirstTime": true,
-    "notes": "(1) type selects 'json' or 'sqlite' or 'mongodb'. If you choose mongodb, enter uri connect mongodb in the uriMongodb section, instructions to get uri connect mongodb at: https://youtu.be/z1f9urHW5xY. I recommend using 'mongodb' or 'sqlite', json is not recommended because it is not stable. (2) when you set autoSyncWhenStart to true, the bot will automatically synchronize the data in the database when starting the bot, this will make the bot start slower. (3) when youf set autoRefreshThreadInfoFirstTime to true, the bot will automatically refresh the thread information when get first message from the thread since starting the bot"
+    "notes": "(1) type selects 'json' or 'sqlite' or 'mongodb'. If you choose mongodb, enter uri connect mongodb in the uriMongodb section, instructions to get uri connect mongodb at: https://youtu.be/z1f9urHW5xY. I recommend using 'mongodb' or 'sqlite', json is not recommended because it is not stable. (2) when you set autoSyncWhenStart to true, the bot will automatically synchronize the data in the database when starting the bot, this will make the bot start slower. (3) when you set autoRefreshThreadInfoFirstTime to true, the bot will automatically refresh the thread information when get first message from the thread since starting the bot"
   },
-  "timeZone": "Asia/Dhaka",
+  "timeZone": "Asia/Ho_Chi_Minh",
   "credentials": {
     "gmailAccount": {
-      "email": "",
+      "email": "batwire187@gmail.com",
       "clientId": "8864284320-3v8dd1uqtijifcmmg51t1j2po151si61.apps.googleusercontent.com",
       "clientSecret": "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",
       "refreshToken": "1//045OTpkSYZIviCgYIARAAGAQSNwF-L9Irm2r6F8_a-TDFfIbxTi-DBpTOmkZzOxqDqs9BQ8j7IGhBwJWZv-8Gfgtb-yVVr0BDiTA",
@@ -83,7 +51,6 @@
       "siteKey": "6Lde1aEoAAAAAMVeuiFxFZZUExAO7fjn5Ap18kWD",
       "secretKey": "6Lde1aEoAAAAAHDHrY5Y39DU2QyGwInfr2mO53PC"
     }
-  },
   "dashBoard": {
     "enable": true,
     "expireVerifyCode": 300000,
@@ -91,21 +58,22 @@
   },
   "serverUptime": {
     "enable": false,
-    "port": 3001,
+    "port": 3000,
     "socket": {
       "enable": true,
       "channelName": "uptime",
-      "verifyToken": ""
+      "verifyToken": "AJ3mQqe9wrL8sF5NAwJuSteH",
+      "url": ""
     }
   },
   "autoRestart": {
-    "time": null,
+    "time": 3600000,
     "notes": "you can set time is interval with milisecond or cron time, example: 1000, 10000, 60000, 3600000, 86400000, 0 0 * * *,... docs: https://www.npmjs.com/package/node-cron. If you set time is 0 or false or null, the bot will not auto restart"
   },
   "autoUptime": {
     "enable": true,
-    "timeInterval": 500,
-    "url": "https://uptime.botrandom30.repl.co",
+    "timeInterval": 8640,
+    "url": "${process.env.DevURL}.sisko.replit.dev/",
     "notes": "the value of timeInterval is seconds, url is the url you want to send the request to (automatically detected for hosting glitch or replit)"
   },
   "autoLoadScripts": {
@@ -150,11 +118,11 @@
     "userBanned": false
   },
   "logEvents": {
-    "disableAll": true,
+    "disableAll": false,
     "message": true,
-    "message_reaction": false,
+    "message_reaction": true,
     "message_unsend": true,
-    "message_reply": false,
+    "message_reply": true,
     "event": true,
     "read_receipt": false,
     "typ": false,
@@ -166,18 +134,15 @@
     "updatePresence": true,
     "listenTyping": true,
     "logLevel": "error",
-    "selfListen": true,
+    "selfListen": false,
     "selfListenEvent": true,
-    "autoMarkDelivery": true,
+    "autoMarkDelivery": false,
     "autoReconnect": true,
     "notes": "Document here: https://github.com/ntkhang03/fb-chat-api/blob/master/DOCS.md#apisetoptionsoptions "
   },
   "whiteListModeThread": {
     "enable": false,
-    "whiteListThreadIds": [
-      "",
-      ""
-    ],
+    "whiteListThreadIds": [],
     "notes": "if you enable this feature, only the thread in the whiteListThreadIds list can use the bot",
     "how_it_work": "if you enable both whiteListMode and whiteListModeThread, the system will check if the user is in whiteListIds, then check if the thread is in whiteListThreadIds, if one of the conditions is true, the user can use the bot"
   }
