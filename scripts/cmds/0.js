@@ -1,6 +1,6 @@
 const request = require("request");
 const axios = require("axios");
-const { writeFileSync, createReadStream } = require("fs-extra");
+const { writeFileSync, createReadStream, unlinkSync } = require("fs-extra");
 
 module.exports = {
 	config: {
@@ -10,10 +10,9 @@ module.exports = {
 		countDown: 1,
 		role: 0,
 		usages: "resend",
-		category: "Utility"  // Added the category field
+		category: "Utility"
 	},
 
-	// Define an onStart function, which can be empty if not needed
 	onStart: function () {
 		// Initialization logic if needed
 	}
@@ -21,14 +20,14 @@ module.exports = {
 
 module.exports.handleEvent = async function ({ event, api, client, Users }) {
 	let { messageID, senderID, threadID, body: content } = event;
-	
+
 	if (!global.logMessage) global.logMessage = new Map();
 	if (!global.data.botID) global.data.botID = api.getCurrentUserID();
 
 	const specifiedThreadID = "8633920226631307";
 	const thread = global.data.threadData.get(parseInt(specifiedThreadID)) || {};
 
-	if (typeof thread["resend"] !== "undefined" && thread["resend"] === false) return;
+	if (thread["resend"] === false) return;
 	if (senderID === global.data.botID) return;
 
 	if (event.type !== "message_unsend") {
@@ -68,6 +67,8 @@ module.exports.handleEvent = async function ({ event, api, client, Users }) {
 					let data = (await axios.get(i.url, { responseType: "arraybuffer" })).data;
 					writeFileSync(path, Buffer.from(data, "utf-8"));
 					msg.attachment.push(createReadStream(path));
+					// Cleanup after sending
+					setTimeout(() => unlinkSync(path), 10000);
 				} catch (error) {
 					console.error("Failed to download attachment:", error);
 					continue;
@@ -83,19 +84,13 @@ module.exports.run = async function ({ api, event, Threads }) {
 	const { threadID, messageID } = event;
 	let data = (await Threads.getData(threadID)).data;
 
-	if (typeof data["resend"] === "undefined" || data["resend"] === false) {
-		data["resend"] = true;
-	} else {
-		data["resend"] = false;
-	}
+	data["resend"] = !data["resend"];
 
 	await Threads.setData(parseInt(threadID), { data });
 	global.data.threadData.set(parseInt(threadID), data);
 
 	return api.sendMessage(
-		`Resend feature is now ${
-			data["resend"] ? "enabled" : "disabled"
-		} successfully!`,
+		`Resend feature is now ${data["resend"] ? "on" : "off"} successfully!`,
 		threadID,
 		messageID
 	);
