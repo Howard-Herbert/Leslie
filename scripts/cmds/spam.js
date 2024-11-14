@@ -1,4 +1,4 @@
-  module.exports = {
+module.exports = {
   config: {
     name: "spm",
     version: "0.9",
