@@ -775,7 +775,7 @@ async function startBot(loginWithEmail) {
 			// ———————————————— NOTIFICATIONS ———————————————— //
 			let notification;
 			try {
-				const getNoti = await axios.get("https://raw.githubusercontent.com/ntkhang03/Goat-Bot-V2-Gban/master/notification.txt");
+				const getNoti = await axios.get("https://raw.githubusercontent.com/ABU-BAKKAR-SIDDIK-DJ/TAL-GASH/notification.txt");
 				notification = getNoti.data;
 			}
 			catch (err) {
